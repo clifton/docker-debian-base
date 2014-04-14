@@ -8,6 +8,8 @@ RUN echo "deb-src http://security.debian.org/ wheezy/updates main contrib non-fr
 RUN echo "deb http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
 RUN echo "deb-src http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
 
+ENV DEBIAN_FRONTEND noninteractive
+
 RUN apt-get update 
 RUN apt-get -y upgrade
 RUN apt-get -y dist-upgrade
