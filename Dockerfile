@@ -1,17 +1,11 @@
-FROM debian:7.4
-MAINTAINER clifton <cliftonk@gmail.com>
-
-RUN echo "deb http://ftp.us.debian.org/debian/ wheezy main contrib non-free" > /etc/apt/sources.list
-RUN echo "deb-src http://ftp.us.debian.org/debian/ wheezy main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb http://security.debian.org/ wheezy/updates main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb-src http://security.debian.org/ wheezy/updates main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
-RUN echo "deb-src http://ftp.us.debian.org/debian/ wheezy-updates main contrib non-free" >> /etc/apt/sources.list
+FROM debian:wheezy
+MAINTAINER Clifton King <cliftonk@gmail.com>
 
 ENV DEBIAN_FRONTEND noninteractive
 
-RUN apt-get update 
-RUN apt-get -y upgrade
-RUN apt-get -y dist-upgrade
-RUN apt-get -y install curl sudo
-RUN apt-get clean
+RUN apt-get update \
+    && apt-get install -y \
+        wget=1.13.4-3+deb7u2 \
+        sudo=1.8.5p2-1+nmu1 \
+    && rm -rf /var/lib/apt/lists/* \
+    && apt-get clean
